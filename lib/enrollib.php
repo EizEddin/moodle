@@ -1211,7 +1211,30 @@ abstract class enrol_plugin {
      * @return bool - true means user with 'enrol/xxx:unenrol' may unenrol this user, false means nobody may touch this user enrolment
      */
     public function allow_unenrol_user(stdClass $instance, stdClass $ue) {
-        return $this->allow_unenrol($instance);
+        global $USER;
+        // Check if a user is trying to unenrol themselves and whether they have this capability.
+        if ($ue->userid == $USER->id) {
+            return $this->allow_unenrol_self($instance);
+        } else {
+            return $this->allow_unenrol($instance);
+        }
+    }
+
+    /**
+     * Check whether a user has the capability to unenrol themselves
+     * All plugins allowing this must implement 'enrol/xxx:unenrolself' capability
+     *
+     * @param stdClass $instance course enrol instance
+     * @return bool - true means user with 'enrol/xxx:unenrolself' may unenrol themselves
+     */
+    public function allow_unenrol_self(stdClass $instance) {
+        $capability = 'enrol/'.$instance->enrol.':unenrolself';
+        $context = context_course::instance($instance->courseid);
+        if (get_capability_info($capability)) {
+            return has_capability($capability, $context);
+        } else {
+            return false;
+        }
     }
 
     /**

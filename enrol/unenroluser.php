@@ -49,6 +49,13 @@ if (!enrol_is_enabled($instance->enrol)) {
     print_error('erroreditenrolment', 'enrol');
 }
 
+global $USER;
+
+$capability = 'enrol/'.$instance->enrol.':unenrolself';
+if ($user->id == $USER->id && get_capability_info($capability)) {
+    require_capability($capability, $context);
+}
+
 $plugin = enrol_get_plugin($instance->enrol);
 
 if (!$plugin->allow_unenrol_user($instance, $ue) or !has_capability("enrol/$instance->enrol:unenrol", $context)) {
