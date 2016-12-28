@@ -2120,5 +2120,21 @@ function xmldb_main_upgrade($oldversion) {
         upgrade_main_savepoint(true, 2016052302.02);
     }
 
+    if ($oldversion < 2016052303.10) {
+
+        // Define field override to be added to course_modules_completion.
+        $table = new xmldb_table('course_modules_completion');
+        $field = new xmldb_field('override', XMLDB_TYPE_INTEGER, '1', null, null, null, null, 'viewed');
+
+        // Conditionally launch add field override.
+        if (!$dbman->field_exists($table, $field)) {
+            $dbman->add_field($table, $field);
+        }
+
+        // Main savepoint reached.
+        upgrade_main_savepoint(true, 2016052303.10);
+
+    }
+    
     return true;
 }

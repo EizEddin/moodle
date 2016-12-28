@@ -53,10 +53,12 @@ $string['completion-alt-manual-n'] = 'Not completed: {$a}. Select to mark as com
 $string['completion-alt-manual-y'] = 'Completed: {$a}. Select to mark as not complete.';
 $string['completion-fail'] = 'Completed (did not achieve pass grade)';
 $string['completion-n'] = 'Not completed';
+$string['completion-n-override'] = 'Not completed (overrride)';
 $string['completion-pass'] = 'Completed (achieved pass grade)';
 $string['completion-title-manual-n'] = 'Mark as complete: {$a}';
 $string['completion-title-manual-y'] = 'Mark as not complete: {$a}';
 $string['completion-y'] = 'Completed';
+$string['completion-y-override'] = 'Completed (overrride)';
 $string['completion_automatic'] = 'Show activity as complete when conditions are met';
 $string['completion_help'] = 'If enabled, activity completion is tracked, either manually or automatically, based on certain conditions. Multiple conditions may be set if desired. If so, the activity will only be considered complete when ALL conditions are met.
 
