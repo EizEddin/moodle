@@ -6,3 +6,4 @@
 #page-report-progress-index .completion_pagingbar p {display:inline;margin:0;}
 #page-report-progress-index .completion_next {display:inline;margin-left:2em;}
 #page-report-progress-index.dir-rtl #completion-progress th svg {direction:ltr;}
+#page-report-progress-index #completion-progress td a .ajaxworking {height: 16px; background: url([[pix:i/ajaxloader]]) no-repeat;}
