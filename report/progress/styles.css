@@ -32,3 +32,8 @@
 #page-report-progress-index #completion-progress th svg {
     direction: ltr;
 }
+
+#page-report-progress-index #completion-progress td a .ajaxworking {
+    height: 16px;
+    background: url([[pix:i/ajaxloader]]) no-repeat;
+}
