@@ -55,7 +55,7 @@ $capabilities = array(
         )
     ),
 
-    /* Unenrol anybody (including self) - watch out for data loss. */
+    /* Unenrol anybody (except self) - watch out for data loss. */
     'enrol/manual:unenrol' => array(
         'captype' => 'write',
         'contextlevel' => CONTEXT_COURSE,

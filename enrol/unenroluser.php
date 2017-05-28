@@ -55,6 +55,11 @@ if (!$plugin->allow_unenrol_user($instance, $ue) or !has_capability("enrol/$inst
     print_error('erroreditenrolment', 'enrol');
 }
 
+global $USER;
+if ($user->id == $USER->id && !$plugin->allow_unenrol_self($instance)) {
+    print_error('erroreditenrolment', 'enrol');
+}
+
 $manager = new course_enrolment_manager($PAGE, $course, $filter);
 $table = new course_enrolment_users_table($manager, $PAGE);
 
