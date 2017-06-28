@@ -103,6 +103,18 @@ class enrol_self_plugin extends enrol_plugin {
         return true;
     }
 
+    /**
+     * Does this plugin allow a user to unenrol themselves?
+     * Yes if they have that capability.
+     *
+     * @param stdClass $instance course enrol instance
+     * @return bool - true means user with 'enrol/xxx:unenrolself' may unenrol themselves
+     */
+    public function allow_unenrol_self(stdClass $instance) {
+        $context = context_course::instance($instance->courseid);
+        return has_capability('enrol/self:unenrolself', $context);
+    }
+
     public function allow_manage(stdClass $instance) {
         // Users with manage cap may tweak period and status.
         return true;

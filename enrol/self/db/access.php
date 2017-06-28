@@ -60,10 +60,12 @@ $capabilities = array(
         'contextlevel' => CONTEXT_COURSE,
         'archetypes' => array(
             'student' => CAP_ALLOW,
+            'teacher' => CAP_ALLOW,
+            'editingteacher' => CAP_ALLOW,
         )
     ),
 
-    /* Unenrol anybody from course (including self) -  watch out for data loss. */
+    /* Unenrol anybody from course (except self) -  watch out for data loss. */
     'enrol/self:unenrol' => array(
         'captype' => 'write',
         'contextlevel' => CONTEXT_COURSE,
