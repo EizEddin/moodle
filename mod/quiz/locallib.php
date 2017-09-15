@@ -2063,12 +2063,16 @@ function quiz_add_quiz_question($questionid, $quiz, $page = 0, $maxmark = null) 
         $slot->slot = $lastslotbefore + 1;
         $slot->page = min($page, $maxpage + 1);
 
-        $DB->execute("
-                UPDATE {quiz_sections}
-                   SET firstslot = firstslot + 1
-                 WHERE quizid = ?
-                   AND firstslot > ?
-                ", array($quiz->id, max($lastslotbefore, 1)));
+        // Get the sections above the one to which the question is being added.
+        $abovesections = $DB->get_records_sql("SELECT *
+                                                FROM {quiz_sections}
+                                                WHERE quizid = ?
+                                                    AND firstslot > ?", array($quiz->id, $lastslotbefore));
+
+        // Increment the sections' first slots in a reverse order.
+        foreach (array_reverse($abovesections) as $section) {
+            $DB->set_field('quiz_sections', 'firstslot', $section->firstslot + 1, array('id' => $section->id));
+        }
 
     } else {
         $lastslot = end($slots);
